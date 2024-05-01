@@ -16,14 +16,27 @@ const highlightQuery = (text, query) => {
 	);
 };
 
-const ListBox = ({ data, activeIndex, setActiveIndex, query }) => {
+const ListBox = ({
+	data,
+	activeIndex,
+	setActiveIndex,
+	query,
+	resultContainer,
+}) => {
 	const cardRefs = useRef([]);
 
 	return (
 		<ul className='listBoxContainer'>
 			{data.map((individual, index) => {
 				return (
-					<li className='listBoxItem' key={individual.id}>
+					<li
+						onMouseOver={() => setActiveIndex(index)}
+						ref={index === activeIndex ? resultContainer : null}
+						className={`${
+							index === activeIndex ? "activeItem" : ""
+						} listBoxItem`}
+						key={individual.id}
+					>
 						<span className='eachitem idelement'>
 							{highlightQuery(individual.id, query)}
 						</span>

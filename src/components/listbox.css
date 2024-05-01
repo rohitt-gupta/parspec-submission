@@ -35,12 +35,12 @@
 .eachitem {
 	margin: 2px;
 }
-
+/* 
 .listBoxItem:hover,
 .listBoxItem.activeItem {
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 	background-color: #d3d6a551;
-}
+} */
 
 .itemName {
 	font-style: italic;
@@ -58,4 +58,9 @@
 
 .idelement {
 	font-weight: bold;
+}
+
+.activeItem {
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+	background-color: #d3d6a551;
 }

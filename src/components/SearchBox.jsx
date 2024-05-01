@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useFetch } from "./useFetch";
 import ListBox from "./ListBox";
 const SearchBox = ({
@@ -20,15 +20,36 @@ const SearchBox = ({
 	handleChange,
 }) => {
 	const [query, setQuery] = useState("");
-	const [isAutoComplete, setIsAutoComplete] = useState(autoComplete);
 	const [activeIndex, setActiveIndex] = useState(null);
-
-	console.log("filteredData", data);
+	const resultContainer = useRef(null);
 
 	const nativeChangeHandler = (event) => {
 		setQuery(event.target.value);
 		handleChange(event.target.value.toLowerCase());
 	};
+
+	const handleKeyDown = (e) => {
+		const { key } = e;
+		let nextIndexCount = 0;
+
+		// move down
+		if (key === "ArrowDown") nextIndexCount = (activeIndex + 1) % data.length;
+
+		// move up
+		if (key === "ArrowUp")
+			nextIndexCount = (activeIndex + data.length - 1) % data.length;
+
+		setActiveIndex(nextIndexCount);
+	};
+
+	useEffect(() => {
+		if (!resultContainer.current) return;
+
+		resultContainer.current.scrollIntoView({
+			behavior: "smooth",
+			block: "nearest",
+		});
+	}, [activeIndex]);
 
 	return (
 		<div className='search'>
@@ -44,7 +65,7 @@ const SearchBox = ({
 				onChange={nativeChangeHandler}
 				placeholder={placeholder}
 				autoComplete='off'
-				// onKeyUp={handleKeyUp}
+				onKeyDown={handleKeyDown}
 			/>
 			{data && data.length > 0 && (
 				<ListBox
@@ -53,6 +74,7 @@ const SearchBox = ({
 					activeIndex={activeIndex}
 					setActiveIndex={setActiveIndex}
 					query={query}
+					resultContainer={resultContainer}
 				/>
 			)}
 			{query !== "" && data && data.length === 0 && noItemMessage()}
