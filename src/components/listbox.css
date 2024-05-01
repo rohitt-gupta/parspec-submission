@@ -1,0 +1,61 @@
+.listBoxContainer {
+	overflow: auto;
+	height: 400px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.listBoxItem {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	border-color: rgba(0, 0, 0, 0.1);
+	border-style: solid;
+	border-width: 0.05px 0px;
+
+	align-items: start;
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+.userItems {
+	border-color: rgba(0, 0, 0, 0.2);
+	border-style: solid;
+	border-width: 1px 0px;
+	width: 100%;
+	padding: 5px 0px;
+}
+
+.eachitem {
+	margin: 2px;
+}
+
+.listBoxItem:hover,
+.listBoxItem.activeItem {
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+	background-color: #d3d6a551;
+}
+
+.itemName {
+	font-style: italic;
+	margin-right: 8px; /* Space between name and details */
+}
+
+.itemDetails {
+	opacity: 0.6;
+	font-size: 0.9em; /* Smaller font size for details */
+}
+
+.highlight {
+	color: blue;
+}
+
+.idelement {
+	font-weight: bold;
+}
