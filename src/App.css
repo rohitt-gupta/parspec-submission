@@ -29,3 +29,10 @@
 	margin-right: 3px;
 	content: "•";
 }
+
+.errorCard {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.8);
+}

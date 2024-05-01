@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useRef, useEffect, useState } from "react";
 import "./listbox.css";
 
 const highlightQuery = (text, query) => {
@@ -23,8 +21,6 @@ const ListBox = ({
 	query,
 	resultContainer,
 }) => {
-	const cardRefs = useRef([]);
-
 	return (
 		<ul className='listBoxContainer'>
 			{data.map((individual, index) => {

@@ -1,20 +1,14 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
-import { useFetch } from "./useFetch";
 import ListBox from "./ListBox";
 const SearchBox = ({
 	id,
 	name,
 	label,
 	placeholder,
-	autoComplete,
 	styles,
-	listBox,
 	noItemMessage,
 	errorMessage,
-	debounceWait,
-	apiPromise,
 	data,
 	error,
 	handleChange,
@@ -69,7 +63,6 @@ const SearchBox = ({
 			/>
 			{data && data.length > 0 && (
 				<ListBox
-					// handleKeyUp={handleKeyUp}
 					data={data}
 					activeIndex={activeIndex}
 					setActiveIndex={setActiveIndex}

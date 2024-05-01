@@ -15,6 +15,7 @@ function App() {
 	const [filteredData, setFilteredData] = useState(data);
 
 	const handleChange = (query) => {
+		// console.log("query", query);
 		if (query === "") return setFilteredData([]);
 
 		const filteredValue = data.filter((profile) => {
@@ -38,16 +39,17 @@ function App() {
 				name='users'
 				label='Search users'
 				placeholder='Search users by ID, name, address'
-				autoComplete={true}
 				styles={{
 					label: "label",
 					input: "input",
 				}}
-				debounceWait={400}
 				listBox={<ListBox />}
-				noItemMessage={() => <div>No users found</div>}
-				errorMessage={() => <div>Something went wrong</div>}
-				apiPromise={apiPromise}
+				noItemMessage={() => (
+					<div className='errorCard listBoxContainer'>No users found</div>
+				)}
+				errorMessage={() => (
+					<div className='errorCard listBoxContainer'>Something went wrong</div>
+				)}
 				data={filteredData}
 				error={error}
 				handleChange={handleChange}
@@ -57,25 +59,3 @@ function App() {
 }
 
 export default App;
-
-// //const [data, setData] = useState(null);
-// 	const [error, setError] = useState(null);
-
-// 	useEffect(() => {
-// 		const fetchData = async () => {
-// 			try {
-// 				const response = await apiPromise();
-// 				if (!response.ok) throw new Error(response.statusText);
-// 				const data = await response.json();
-// 				setData(data);
-// 			} catch (e) {
-// 				console.log(e);
-// 				setError(e);
-// 			}
-// 		};
-
-// 		setData(null);
-// 		setError(null);
-
-// 		fetchData();
-// 	}, []);
